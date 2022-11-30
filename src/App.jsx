@@ -7,10 +7,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export const App = () => {
   return (
+    // Usando rotas para a home e PostsComments
     <Router>
       <Routes>
-        <Route path="/postscomments" element={<PostsComments />} />
-        <Route path="/postscomments/id" element={<PostsComments />} />
+        <Route path="/postscomments/:id" element={<PostsComments />} />
         <Route path="/" element={<Home />} />
       </Routes>
       <GlobalStyles />

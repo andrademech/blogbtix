@@ -8,6 +8,4 @@ export const Container = styled.div`
   padding: 20px;
   font-size: 0.5rem;
   margin-top: 15px;
-
-  border: 1px solid var(--secondary);
 `;

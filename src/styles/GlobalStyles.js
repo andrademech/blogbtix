@@ -26,13 +26,10 @@ export default createGlobalStyle`
     scroll-behavior: smooth;
   }
 
-  /* ::-webkit-scrollbar {
-    display: none;
-  } */
-
   body {
     font-family: 'Poppins', sans-serif;
     background: var(--white);
     line-height: 1.7;
+    color: black;
   }
 `;

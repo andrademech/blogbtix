@@ -1,8 +1,8 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { loadPosts } from '../../utils/LoadPosts';
+import { Footer } from '../../Footer/index';
 
 import {
   PostsStyle,
@@ -12,16 +12,22 @@ import {
   Container,
   Images,
   Author,
-  IncludeComments,
+  Comments,
   CommentsContainer,
   User,
   Reply,
   Comment,
+  IncludeComments,
+  InputUsername,
+  InputComment,
+  Button,
 } from './styles';
 
 import userImage from '../../../assets/Vector.png';
 
 export const PostsComments = () => {
+  // Setando carregamento da loadPosts para trazer o array unificado
+
   const [users, setUsers] = useState([]);
 
   const handleLoadPosts = async () => {
@@ -33,8 +39,12 @@ export const PostsComments = () => {
   useEffect(() => {
     handleLoadPosts();
   }, []);
+  // Setando com useParams() o id do autor, configurado nas rotas, em App.jsx
+  const params = useParams();
+  const { id } = params;
 
-  const userAuthor = users.filter((users) => users.id === 1);
+  // Filtrando o autor pelo id específico para renderizar na página
+  const userAuthor = users.filter((user) => user.id == id);
 
   return (
     <>
@@ -42,6 +52,8 @@ export const PostsComments = () => {
         <Return>Retornar</Return>
       </Link>
       <Container>
+        {/* Mapeando Imagem e Título pela API */}
+
         <PostsStyle>
           {userAuthor.map((user) => (
             <Post key={user.id}>
@@ -137,6 +149,9 @@ export const PostsComments = () => {
                   consectetur adipisicing elit. Illum sapiente sint
                 </p>
               </PostContent>
+
+              {/* Listando detalhes do autor pela API */}
+
               <Author>
                 <h2>Autor: {user.name} </h2>
                 <h3>Email: {user.email} </h3>
@@ -147,29 +162,78 @@ export const PostsComments = () => {
           ))}
         </PostsStyle>
 
-        <IncludeComments>
+        <Comments>
           <h2>Comments</h2>
+        </Comments>
+
+        <IncludeComments>
+          <InputUsername placeholder="Username..." />
+          <InputComment placeholder="Your Comment..." />
+          <Button placeholder="Comment">
+            <span>Comment</span>
+          </Button>
         </IncludeComments>
 
-        <CommentsContainer>
-          <User>
-            <img src={userImage} alt="usuario" />
-            <span>user</span>
-          </User>
-          <Comment>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
-              veritatis cum praesentium minus laboriosam corrupti numquam
-              molestiae, accusamus labore. Repellat nesciunt officiis blanditiis
-              sit tempore eum ipsam laborum doloribus adipisci.
-            </p>
-            <Reply>
-              <p>Reply</p>
-              <span>a min ago</span>
-            </Reply>
-          </Comment>
-        </CommentsContainer>
+        {/* Mapeando comentário pela API */}
+
+        <>
+          {userAuthor.map((user) => (
+            <CommentsContainer key={user.id}>
+              <User>
+                <img src={userImage} alt="usuario" />
+
+                <span>{user.name}</span>
+              </User>
+              <Comment>
+                <p>{user.bodyComments}</p>
+                <Reply>
+                  <p>Reply</p>
+                  <span>a min ago</span>
+                </Reply>
+              </Comment>
+            </CommentsContainer>
+          ))}
+        </>
+
+        <>
+          {userAuthor.map((user) => (
+            <CommentsContainer key={user.id}>
+              <User>
+                <img src={userImage} alt="usuario" />
+
+                <span>{user.name}</span>
+              </User>
+              <Comment>
+                <p>{user.bodyComments}</p>
+                <Reply>
+                  <p>Reply</p>
+                  <span>a min ago</span>
+                </Reply>
+              </Comment>
+            </CommentsContainer>
+          ))}
+        </>
+
+        <>
+          {userAuthor.map((user) => (
+            <CommentsContainer key={user.id}>
+              <User>
+                <img src={userImage} alt="usuario" />
+
+                <span>{user.name}</span>
+              </User>
+              <Comment>
+                <p>{user.bodyComments}</p>
+                <Reply>
+                  <p>Reply</p>
+                  <span>a min ago</span>
+                </Reply>
+              </Comment>
+            </CommentsContainer>
+          ))}
+        </>
       </Container>
+      <Footer />
     </>
   );
 };

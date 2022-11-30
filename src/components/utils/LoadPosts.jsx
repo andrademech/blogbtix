@@ -1,3 +1,4 @@
+// Fazendo leitura e zipagem da API de users, posts, photos e comments
 export const loadPosts = async () => {
   const usersResponse = fetch('https://jsonplaceholder.typicode.com/users');
   const postsResponse = fetch('https://jsonplaceholder.typicode.com/posts');
@@ -18,6 +19,7 @@ export const loadPosts = async () => {
   const photosJson = await photos.json();
   const commentsJson = await comments.json();
 
+  // Zipando em um único array, a partir da API do users, que possui 10 users
   const usersPostsPhotosAndComments = usersJson.map((user, index) => {
     return {
       ...user,

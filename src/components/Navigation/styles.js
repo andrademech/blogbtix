@@ -13,13 +13,29 @@ export const Container = styled.div`
 export const Logo = styled.div`
   width: 75px;
   height: 35px;
-  background-color: var(--primary);
   border-radius: 5px;
   justify-content: center;
   align-items: center;
   display: flex;
-  color: var(--white);
   cursor: pointer;
+
+
+  > a {
+    cursor: pointer;
+    color: var(--primary);
+  }
+
+  > a:link, a:visited {
+    color: var(--primary);
+  }
+
+  > h2:link, h2:visited {
+    color: var(--primary);
+  }
+
+  > h2 {
+    cursor: pointer;
+  }
 `;
 
 export const Nav = styled.div`
