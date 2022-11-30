@@ -18,7 +18,7 @@ export const Logo = styled.div`
   align-items: center;
   display: flex;
   cursor: pointer;
-
+  color: var(--primary);
 
   > a {
     cursor: pointer;
